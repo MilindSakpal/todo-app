@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://todo-server-beta-ten.vercel.app",
+  baseURL: "https://todo-server-jtmk.vercel.app",
 });
 
 // Automatically attach JWT token to every request
