@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Clock, ChevronDown, User, BarChart3, LogOut } from "lucide-react";
+import logo from "../../assets/1.png";
 
 interface Profile {
   name: string;
@@ -47,14 +48,19 @@ export default function Navbar({
         {/* Logo */}
 
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-md shadow-blue-200">
+          {/* <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-md shadow-blue-200">
             <Clock size={16} className="text-white" />
-          </div>
+          </div> */}
 
           <div>
-            <span className="text-sm font-bold">Intellysis</span>
+                      <img
+                        src={logo}
+                        alt="Intellysis Logo"
+                        className="w-60 h-30 object-contain"
+                      />
+            {/* <span className="text-sm font-bold">Intellysis</span>
 
-            <span className="text-sm text-blue-600 ml-1">Time Sheet</span>
+            <span className="text-sm text-blue-600 ml-1">Time Sheet</span> */}
           </div>
         </div>
 

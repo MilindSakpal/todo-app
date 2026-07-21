@@ -45,15 +45,12 @@ export default function Login() {
           <img
             src={logo}
             alt="Intellysis Logo"
-            className="w-24 h-24 object-contain"
+            className="w-70 h-40 object-contain"
           />
         </div>
-
-        <h1 className="text-3xl font-bold text-center">Intellysis</h1>
-
-        <p className="text-center text-slate-500 mt-2">
+        {/* <p className="text-center text-slate-500 mt-2">
           Employee Time Sheet Login
-        </p>
+        </p> */}
 
         <form onSubmit={handleLogin} className="mt-8 space-y-5">
           <div>
