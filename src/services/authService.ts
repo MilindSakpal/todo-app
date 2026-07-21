@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "https://todo-server-beta-ten.vercel.app/auth";
+const API = "https://todo-server-jtmk.vercel.app/auth";
 
 export const login = async (
   email: string,
