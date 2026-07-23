@@ -793,6 +793,8 @@ export default function Dashboard() {
 
   const fetchTasks = async () => {
     console.log("Fetching tasks...");
+    const data = await getTasks();
+console.log("Fetched:", data);
     try {
       const data = await getTasks();
       console.log("Fetched:", data);
@@ -1296,7 +1298,7 @@ export default function Dashboard() {
       <ReportsModal
         open={reportsOpen}
         onClose={() => setReportsOpen(false)}
-        entries={entries}
+        entries={filteredEntries}
       />
     </div>
   );
