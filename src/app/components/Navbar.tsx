@@ -49,7 +49,7 @@ export default function Navbar({
           <img
             src={logo}
             alt="Intellysis Digital"
-            className="h-14 w-auto object-contain"
+            className="h-40 w-auto object-contain"
           />
         </div>
 
