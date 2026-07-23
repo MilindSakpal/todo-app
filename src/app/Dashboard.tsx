@@ -1298,7 +1298,8 @@ console.log("Fetched:", data);
       <ReportsModal
         open={reportsOpen}
         onClose={() => setReportsOpen(false)}
-        entries={filteredEntries}
+        entries={entries}
+        profile={profile}
       />
     </div>
   );
