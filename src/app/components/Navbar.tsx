@@ -32,39 +32,27 @@ export default function Navbar({
     .map((word) => word[0])
     .join("")
     .toUpperCase();
-    
-    const handleLogout = () => {
- 
-  localStorage.removeItem("token");
-  localStorage.removeItem("employee");
-  localStorage.removeItem("profile"); 
-  window.location.href = "/login";
-  window.location.reload();
-};
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("employee");
+    localStorage.removeItem("profile");
+    window.location.href = "/login";
+    window.location.reload();
+  };
 
   return (
     <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
-      <div className="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
         {/* Logo */}
 
-        <div className="flex items-center gap-3">
-          {/* <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-md shadow-blue-200">
-            <Clock size={16} className="text-white" />
-          </div> */}
-
-          <div>
-                      <img
-                        src={logo}
-                        alt="Intellysis Logo"
-                        className="w-60 h-30 object-contain"
-                      />
-            {/* <span className="text-sm font-bold">Intellysis</span>
-
-            <span className="text-sm text-blue-600 ml-1">Time Sheet</span> */}
-          </div>
+        <div className="flex items-center">
+          <img
+            src={logo}
+            alt="Intellysis Digital"
+            className="h-10 w-auto object-contain"
+          />
         </div>
-
-        {/* Date */}
 
         <div className="hidden md:flex items-center px-4 py-2 rounded-xl bg-slate-50 border">
           <span className="text-xs text-slate-500">
@@ -128,12 +116,12 @@ export default function Navbar({
                 <hr />
 
                 <button
-  onClick={handleLogout}
-  className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-red-600 hover:bg-red-50"
->
-  <LogOut size={14} />
-  Sign Out
-</button>
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-2.5 px-4 py-2.5 text-xs font-medium text-red-600 hover:bg-red-50"
+                >
+                  <LogOut size={14} />
+                  Sign Out
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
