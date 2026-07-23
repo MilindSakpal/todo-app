@@ -43,14 +43,13 @@ export default function Navbar({
 
   return (
     <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
-      <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-
         <div className="flex items-center">
           <img
             src={logo}
             alt="Intellysis Digital"
-            className="h-10 w-auto object-contain"
+            className="h-14 w-auto object-contain"
           />
         </div>
 
