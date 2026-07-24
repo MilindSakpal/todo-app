@@ -608,7 +608,7 @@ function ExcelPanel() {
   const handleExportExcel = async () => {
   try {
     const res = await fetch(
-  `${import.meta.env.VITE_API_URL}/graph/excel`,
+  `${import.meta.env.VITE_API_URL}/export/excel`,
   {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
