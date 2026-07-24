@@ -605,6 +605,27 @@ function ExcelPanel() {
     }, 1800);
   }
 
+  const handleExportExcel = async () => {
+  try {
+    const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/graph/excel`,
+  {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }
+);  const data = await res.json();
+
+    if (data.success) {
+      window.open(data.downloadUrl, "_blank");
+    } else {
+      alert("Export failed");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong");
+  }
+};
   return (
     <div className="space-y-4">
       {/* Status */}
@@ -653,7 +674,8 @@ function ExcelPanel() {
           {syncing ? "Syncing…" : "Sync Now"}
         </button>
         <div className="grid grid-cols-2 gap-2">
-          <button className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 transition-all">
+          <button onClick={handleExportExcel}
+          className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 transition-all">
             <Download size={12} /> Export
           </button>
           <button className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 transition-all">

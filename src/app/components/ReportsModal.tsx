@@ -155,9 +155,14 @@ export default function ReportsModal({
 
 const handleExportExcel = async () => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/export/excel`);
-
-    const data = await res.json();
+    const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/graph/excel`,
+  {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }
+);  const data = await res.json();
 
     if (data.success) {
       window.open(data.downloadUrl, "_blank");
