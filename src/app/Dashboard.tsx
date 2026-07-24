@@ -204,7 +204,6 @@ function EntryModal({ entry, selectedDate, onSave, onClose }: ModalProps) {
             "0 24px 64px rgba(30,136,229,0.15), 0 4px 16px rgba(0,0,0,0.08)",
         }}
       >
-        
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
           <div>
             <h2 className="text-base font-semibold text-slate-900">
@@ -606,26 +605,27 @@ function ExcelPanel() {
   }
 
   const handleExportExcel = async () => {
-  try {
-    const res = await fetch(
-  `${import.meta.env.VITE_API_URL}/export/excel`,
-  {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  }
-);  const data = await res.json();
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/export/excel`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await res.json();
 
-    if (data.success) {
-      window.open(data.downloadUrl, "_blank");
-    } else {
-      alert("Export failed");
+      if (data.success) {
+        window.open(data.downloadUrl, "_blank");
+      } else {
+        alert("Export failed");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong");
     }
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong");
-  }
-};
+  };
+
+  const employee = JSON.parse(localStorage.getItem("employee") || "{}");
+  
   return (
     <div className="space-y-4">
       {/* Status */}
@@ -646,7 +646,9 @@ function ExcelPanel() {
         <FileSpreadsheet size={16} className="text-green-600 flex-shrink-0" />
         <div className="min-w-0">
           <p className="text-xs font-semibold text-slate-800 truncate">
-            Timesheet_Q3_2025.xlsx
+            {employee.full_name
+              ? `${employee.full_name}_daily_task_tracker.xlsx`
+              : "Timesheet.xlsx"}
           </p>
           <p className="text-[10px] text-slate-500">Last sync: 2 mins ago</p>
         </div>
@@ -674,11 +676,18 @@ function ExcelPanel() {
           {syncing ? "Syncing…" : "Sync Now"}
         </button>
         <div className="grid grid-cols-2 gap-2">
-          <button onClick={handleExportExcel}
-          className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 transition-all">
+          <button
+            onClick={handleExportExcel}
+            className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 transition-all"
+          >
             <Download size={12} /> Export
           </button>
-          <button className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 transition-all">
+          <button
+            onClick={() =>
+              alert("🚧 Import feature will be available in a future update.")
+            }
+            className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 active:scale-95 transition-all"
+          >
             <Upload size={12} /> Import
           </button>
         </div>
@@ -787,7 +796,6 @@ export default function Dashboard() {
       designation: "Employee",
     };
   });
-
   useEffect(() => {
     localStorage.setItem("profile", JSON.stringify(profile));
   }, [profile]);
@@ -816,7 +824,7 @@ export default function Dashboard() {
   const fetchTasks = async () => {
     console.log("Fetching tasks...");
     const data = await getTasks();
-console.log("Fetched:", data);
+    console.log("Fetched:", data);
     try {
       const data = await getTasks();
       console.log("Fetched:", data);
